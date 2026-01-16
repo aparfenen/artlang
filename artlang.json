@@ -1,0 +1,627 @@
+{
+  "meta": {
+    "name": "artlang",
+    "version": "0.1.0",
+    "description": "A generative grammar for visual composition",
+    "philosophy": "Composition is the organization of tensions"
+  },
+
+  "lenses": {
+    "geometric": {
+      "id": "geometric",
+      "name": "Geometric",
+      "question": "What is it?"
+    },
+    "perceptual": {
+      "id": "perceptual",
+      "name": "Perceptual",
+      "question": "How do we see it?"
+    },
+    "energetic": {
+      "id": "energetic",
+      "name": "Energetic",
+      "question": "What does it do?"
+    }
+  },
+
+  "primitives": {
+    "point": {
+      "id": "point",
+      "lenses": {
+        "geometric": "point",
+        "perceptual": "mark",
+        "energetic": "seed"
+      },
+      "definition": "A position without dimension; the smallest locatable unit",
+      "inherent": ["demands attention", "implies stillness", "has no direction"],
+      "character": {
+        "by_quantity": {
+          "one": "focus, singularity, loneliness",
+          "two": "relationship, tension, dialogue",
+          "three": "pattern, stability, group",
+          "many": "texture, field, dissolution"
+        },
+        "by_placement": {
+          "center": "stability, importance",
+          "off_center": "tension, movement",
+          "edge": "precariousness, transition",
+          "corner": "compression, trap"
+        }
+      }
+    },
+    "line": {
+      "id": "line",
+      "lenses": {
+        "geometric": "line",
+        "perceptual": "path",
+        "energetic": "force"
+      },
+      "definition": "Extension in one dimension; connection of two points",
+      "inherent": ["creates direction", "implies movement", "divides space"],
+      "character": {
+        "by_orientation": {
+          "horizontal": {"visual": "—", "feeling": "calm, rest, stability"},
+          "vertical": {"visual": "|", "feeling": "alert, growth, life"},
+          "diagonal_rising": {"visual": "/", "feeling": "optimism, effort, progress"},
+          "diagonal_falling": {"visual": "\\", "feeling": "decline, ease, entropy"},
+          "curved": {"visual": "~", "feeling": "organic, flowing, gentle"},
+          "broken": {"visual": "- - -", "feeling": "fragmented, uncertain, nervous"}
+        },
+        "by_quality": {
+          "thick": "heavy, bold, assertive",
+          "thin": "delicate, precise, quiet",
+          "sharp": "clean, mechanical, certain",
+          "rough": "organic, textured, emotional"
+        }
+      }
+    },
+    "plane": {
+      "id": "plane",
+      "lenses": {
+        "geometric": "plane",
+        "perceptual": "field",
+        "energetic": "ground"
+      },
+      "definition": "Extension in two dimensions; bounded area",
+      "inherent": ["has shape", "contains or excludes", "has weight"],
+      "character": {
+        "by_shape": {
+          "circle": "organic, complete, eternal",
+          "square": "stable, artificial, rational",
+          "rectangle": "directional, framing, narrative",
+          "triangle": "dynamic, pointed, hierarchical",
+          "irregular": "organic, chaotic, emotional"
+        },
+        "by_boundary": {
+          "hard": "defined, certain, confrontational",
+          "soft": "approachable, transitional, gentle",
+          "dissolved": "ambiguous, merging, mysterious",
+          "absent": "infinite, atmospheric, unbounded"
+        }
+      }
+    },
+    "volume": {
+      "id": "volume",
+      "lenses": {
+        "geometric": "volume",
+        "perceptual": "body",
+        "energetic": "container"
+      },
+      "definition": "Extension in three dimensions; implied or actual depth",
+      "inherent": ["occupies space", "has surface", "creates interior"],
+      "character": {
+        "by_form": {
+          "sphere": "complete, perfect, celestial",
+          "cube": "stable, rational, architectural",
+          "cylinder": "organic yet ordered, growth",
+          "pyramid": "hierarchical, ancient, aspirational",
+          "irregular": "natural, chaotic, alive"
+        }
+      }
+    },
+    "void": {
+      "id": "void",
+      "lenses": {
+        "geometric": "void",
+        "perceptual": "emptiness",
+        "energetic": "potential"
+      },
+      "definition": "Absence of elements; negative space",
+      "inherent": ["defines by absence", "creates contrast", "implies possibility"],
+      "character": {
+        "by_proportion": {
+          "dominant": "isolation, focus, breathing",
+          "equal": "balance, dialogue, partnership",
+          "minimal": "density, intensity, claustrophobia",
+          "none": "overwhelm, chaos, horror vacui"
+        },
+        "by_type": {
+          "active": "shaped by surrounding elements, holds tension",
+          "passive": "leftover space, background"
+        }
+      }
+    }
+  },
+
+  "properties": {
+    "spatial": {
+      "position": {
+        "id": "position",
+        "scale": ["center", "off_center", "edge", "corner", "outside"],
+        "values": {
+          "center": {"description": "equidistant from edges", "creates": "stability, importance, target"},
+          "off_center": {"description": "displaced from center", "creates": "dynamic balance, interest, tension"},
+          "edge": {"description": "along frame boundary", "creates": "transition, precariousness, liminality"},
+          "corner": {"description": "intersection of two edges", "creates": "compression, trap, maximum tension"},
+          "outside": {"description": "beyond frame boundary", "creates": "escape, continuation, mystery"}
+        }
+      },
+      "scale": {
+        "id": "scale",
+        "scale": ["overwhelming", "dominant", "equal", "subordinate", "minimal"],
+        "values": {
+          "overwhelming": {"description": "fills or exceeds frame", "creates": "immersion, claustrophobia, awe"},
+          "dominant": {"description": "largest relative size", "creates": "power, importance, loudness"},
+          "equal": {"description": "same relative size", "creates": "balance, democracy, repetition"},
+          "subordinate": {"description": "smaller relative size", "creates": "support, quiet, deference"},
+          "minimal": {"description": "nearly invisible size", "creates": "vulnerability, preciousness, whisper"}
+        }
+      },
+      "orientation": {
+        "id": "orientation",
+        "scale": ["horizontal", "vertical", "diagonal_rising", "diagonal_falling", "tilted"],
+        "values": {
+          "horizontal": {"description": "parallel to horizon", "creates": "calm, rest, stability"},
+          "vertical": {"description": "perpendicular to horizon", "creates": "alert, growth, aspiration"},
+          "diagonal_rising": {"description": "rising left to right", "creates": "optimism, effort, progress"},
+          "diagonal_falling": {"description": "falling left to right", "creates": "decline, ease, entropy"},
+          "tilted": {"description": "off true axis", "creates": "instability, dynamism, unease"}
+        }
+      },
+      "depth": {
+        "id": "depth",
+        "scale": ["flat", "shallow", "moderate", "deep"],
+        "values": {
+          "flat": {"description": "no depth cues", "creates": "abstract, graphic, timeless"},
+          "shallow": {"description": "minimal depth", "creates": "controlled, stage-like"},
+          "moderate": {"description": "clear depth", "creates": "natural, readable"},
+          "deep": {"description": "strong depth cues", "creates": "immersive, spatial, inviting"}
+        }
+      }
+    },
+    "visual": {
+      "density": {
+        "id": "density",
+        "scale": ["solid", "dense", "moderate", "sparse", "empty"],
+        "values": {
+          "solid": {"description": "completely filled", "creates": "heavy, certain, opaque"},
+          "dense": {"description": "tightly packed", "creates": "intense, crowded, active"},
+          "moderate": {"description": "balanced fill", "creates": "comfortable, readable"},
+          "sparse": {"description": "widely distributed", "creates": "quiet, isolated, contemplative"},
+          "empty": {"description": "nothing present", "creates": "void, potential, silence"}
+        }
+      },
+      "contrast": {
+        "id": "contrast",
+        "scale": ["extreme", "high", "moderate", "low", "none"],
+        "values": {
+          "extreme": {"description": "maximum difference", "creates": "drama, conflict, clarity"},
+          "high": {"description": "strong difference", "creates": "energy, distinction, boldness"},
+          "moderate": {"description": "noticeable difference", "creates": "comfortable, readable"},
+          "low": {"description": "subtle difference", "creates": "soft, unified, calm"},
+          "none": {"description": "no difference", "creates": "invisible, merged, lost"}
+        }
+      },
+      "boundary": {
+        "id": "boundary",
+        "scale": ["hard", "firm", "soft", "blurred", "dissolved"],
+        "values": {
+          "hard": {"description": "sharp, defined edge", "creates": "certainty, separation, confrontation"},
+          "firm": {"description": "clear but not harsh", "creates": "definition, clarity"},
+          "soft": {"description": "gradual transition", "creates": "approachability, gentleness"},
+          "blurred": {"description": "ambiguous edge", "creates": "mystery, transition, movement"},
+          "dissolved": {"description": "no clear edge", "creates": "merging, atmosphere, dissolution"}
+        }
+      },
+      "texture": {
+        "id": "texture",
+        "scale": ["smooth", "fine", "coarse", "rough"],
+        "values": {
+          "smooth": {"description": "no surface variation", "creates": "calm, artificial, perfect"},
+          "fine": {"description": "small-scale variation", "creates": "delicate, detailed, organic"},
+          "coarse": {"description": "large-scale variation", "creates": "rough, natural, tactile"},
+          "rough": {"description": "irregular variation", "creates": "raw, energetic, emotional"}
+        }
+      }
+    },
+    "energetic": {
+      "weight": {
+        "id": "weight",
+        "scale": ["heavy", "substantial", "balanced", "light", "weightless"],
+        "values": {
+          "heavy": {"description": "visually massive", "creates": "grounded, serious, immovable"},
+          "substantial": {"description": "noticeable mass", "creates": "present, solid, reliable"},
+          "balanced": {"description": "neither heavy nor light", "creates": "neutral, flexible"},
+          "light": {"description": "visually minimal mass", "creates": "airy, free, ephemeral"},
+          "weightless": {"description": "no apparent mass", "creates": "floating, spiritual, transcendent"}
+        },
+        "factors": ["dark value = heavy", "large size = heavy", "texture = heavy", "lower position = heavy", "warm color = heavier"]
+      },
+      "temperature": {
+        "id": "temperature",
+        "scale": ["hot", "warm", "neutral", "cool", "cold"],
+        "values": {
+          "hot": {"description": "advancing, aggressive", "creates": "passion, danger, urgency"},
+          "warm": {"description": "inviting, comfortable", "creates": "intimacy, welcome, life"},
+          "neutral": {"description": "neither warm nor cool", "creates": "balance, objectivity"},
+          "cool": {"description": "receding, calm", "creates": "distance, peace, intellect"},
+          "cold": {"description": "remote, uninviting", "creates": "isolation, death, sterility"}
+        }
+      },
+      "tension": {
+        "id": "tension",
+        "scale": ["extreme", "high", "moderate", "low", "resolved"],
+        "values": {
+          "extreme": {"description": "maximum strain", "creates": "crisis, breaking point"},
+          "high": {"description": "strong opposition", "creates": "drama, conflict, energy"},
+          "moderate": {"description": "some strain", "creates": "interest, engagement"},
+          "low": {"description": "little opposition", "creates": "calm, resolution"},
+          "resolved": {"description": "no strain", "creates": "peace, completion, stasis"}
+        },
+        "factors": ["diagonal orientation", "high contrast", "edge position", "asymmetric balance", "opposing forces"]
+      },
+      "movement": {
+        "id": "movement",
+        "scale": ["static", "potential", "slow", "fast", "frozen"],
+        "values": {
+          "static": {"description": "no implied motion", "creates": "stability, permanence"},
+          "potential": {"description": "motion about to happen", "creates": "anticipation, suspense"},
+          "slow": {"description": "gentle implied motion", "creates": "calm, meditation, flow"},
+          "fast": {"description": "rapid implied motion", "creates": "energy, urgency, chaos"},
+          "frozen": {"description": "captured mid-motion", "creates": "dramatic, suspended, tense"}
+        }
+      }
+    }
+  },
+
+  "relations": {
+    "between_elements": {
+      "proximity": {
+        "id": "proximity",
+        "scale": ["touching", "near", "moderate", "far", "opposite"],
+        "values": {
+          "touching": {"description": "share edge or overlap", "creates": "unity, merger, interaction"},
+          "near": {"description": "close but separate", "creates": "association, dialogue, tension"},
+          "moderate": {"description": "comfortable distance", "creates": "independence with connection"},
+          "far": {"description": "significant separation", "creates": "isolation, loneliness"},
+          "opposite": {"description": "maximum distance", "creates": "polarity, confrontation, balance"}
+        }
+      },
+      "force": {
+        "id": "force",
+        "values": {
+          "attraction": {"description": "pull toward each other", "creates": "connection, desire, inevitability"},
+          "repulsion": {"description": "push apart", "creates": "conflict, rejection, explosion"},
+          "orbit": {"description": "one circles another", "creates": "hierarchy, protection, relationship"},
+          "collision": {"description": "on impact course", "creates": "drama, violence, energy"},
+          "parallel": {"description": "moving same direction", "creates": "agreement, harmony, flow"},
+          "convergence": {"description": "moving toward same point", "creates": "focus, destiny, gathering"},
+          "divergence": {"description": "moving apart", "creates": "separation, dispersal, choice"}
+        }
+      },
+      "hierarchy": {
+        "id": "hierarchy",
+        "values": {
+          "dominance": {"description": "one clearly primary", "creates": "focus, importance, narrative"},
+          "subordination": {"description": "one clearly secondary", "creates": "support, context, depth"},
+          "equality": {"description": "same visual importance", "creates": "balance, democracy, pattern"},
+          "sequence": {"description": "ordered progression", "creates": "time, narrative, rhythm"},
+          "cluster": {"description": "grouped together", "creates": "unity, mass, family"}
+        }
+      },
+      "echo": {
+        "id": "echo",
+        "values": {
+          "repetition": {"description": "same element multiple times", "creates": "rhythm, pattern, emphasis"},
+          "variation": {"description": "similar but different", "creates": "unity with interest, development"},
+          "contrast": {"description": "opposite elements", "creates": "drama, distinction, meaning"},
+          "rhyme": {"description": "different with shared quality", "creates": "subtle unity, sophistication"},
+          "counterpoint": {"description": "independent but complementary", "creates": "complexity, dialogue"}
+        }
+      }
+    },
+    "to_frame": {
+      "position": {
+        "id": "frame_position",
+        "values": {
+          "centered": {"description": "at frame center", "creates": "stability, importance, formality"},
+          "floating": {"description": "unanchored to edges", "creates": "freedom, isolation, suspense"},
+          "anchored": {"description": "touching or near edge", "creates": "stability, grounding, connection"},
+          "cropped": {"description": "extends beyond frame", "creates": "continuation, immersion, intimacy"},
+          "cornered": {"description": "in corner", "creates": "compression, trap, marginality"}
+        }
+      },
+      "space": {
+        "id": "frame_space",
+        "values": {
+          "fills": {"description": "occupies most space", "creates": "dominance, claustrophobia, immersion"},
+          "surrounded": {"description": "isolated in space", "creates": "focus, loneliness, importance"},
+          "balanced": {"description": "even distribution", "creates": "harmony, completeness"},
+          "asymmetric": {"description": "uneven distribution", "creates": "dynamic, tension, interest"},
+          "clustered": {"description": "grouped with empty rest", "creates": "focal area, narrative"}
+        }
+      },
+      "edge": {
+        "id": "frame_edge",
+        "values": {
+          "entry": {"description": "appears to enter", "creates": "arrival, beginning, intrusion"},
+          "exit": {"description": "appears to leave", "creates": "departure, ending, escape"},
+          "trapped": {"description": "contained by frame", "creates": "confinement, safety, limitation"},
+          "escaping": {"description": "breaking free", "creates": "liberation, expansion, power"},
+          "parallel": {"description": "echoes frame boundary", "creates": "stability, formality, order"}
+        }
+      }
+    },
+    "to_viewer": {
+      "address": {
+        "id": "viewer_address",
+        "values": {
+          "direct": {"description": "faces viewer", "creates": "confrontation, connection, engagement"},
+          "indirect": {"description": "turned away", "creates": "privacy, mystery, narrative"},
+          "profile": {"description": "perpendicular to viewer", "creates": "distance, objectivity"},
+          "oblique": {"description": "at angle", "creates": "dynamism, casual, spontaneity"}
+        }
+      },
+      "distance": {
+        "id": "viewer_distance",
+        "scale": ["intimate", "personal", "social", "public", "infinite"],
+        "values": {
+          "intimate": {"description": "very close", "creates": "personal, intrusive, overwhelming"},
+          "personal": {"description": "close, comfortable", "creates": "friendly, approachable"},
+          "social": {"description": "moderate distance", "creates": "formal, objective"},
+          "public": {"description": "far", "creates": "distant, overview, context"},
+          "infinite": {"description": "extreme distance", "creates": "cosmic, insignificant, transcendent"}
+        }
+      }
+    }
+  },
+
+  "patterns": {
+    "focus": {
+      "isolation": {
+        "id": "isolation_focus",
+        "name": "Isolation Focus",
+        "formula": ["single_element", "center", "surrounding_void", "high_contrast"],
+        "creates": ["importance", "attention", "solitude"],
+        "why": "Nothing competes. The eye has nowhere else to go."
+      },
+      "scale": {
+        "id": "scale_focus",
+        "name": "Scale Focus",
+        "formula": ["dominant_element", "subordinate_elements", "proximity"],
+        "creates": ["hierarchy", "narrative_center", "importance"],
+        "why": "Visual weight demands attention."
+      },
+      "contrast": {
+        "id": "contrast_focus",
+        "name": "Contrast Focus",
+        "formula": ["differentiated_element", "uniform_context", "moderate_contrast"],
+        "creates": ["discovery", "uniqueness", "emergence"],
+        "why": "The different thing stands out."
+      },
+      "convergence": {
+        "id": "convergence_focus",
+        "name": "Convergence Focus",
+        "formula": ["multiple_lines", "single_intersection", "directional_force"],
+        "creates": ["destiny", "inevitability", "target"],
+        "why": "Lines lead the eye to one point."
+      }
+    },
+    "tension": {
+      "diagonal": {
+        "id": "diagonal_tension",
+        "name": "Diagonal Drama",
+        "formula": ["diagonal_orientation", "high_contrast", "asymmetric_position"],
+        "creates": ["instability", "action", "urgency"],
+        "why": "Diagonals fight gravity. Asymmetry resists resolution."
+      },
+      "edge": {
+        "id": "edge_tension",
+        "name": "Edge Tension",
+        "formula": ["element", "edge_proximity", "cropping", "direction_toward_exit"],
+        "creates": ["anxiety", "escape", "limitation"],
+        "why": "The edge is a boundary. Approaching it suggests leaving."
+      },
+      "opposition": {
+        "id": "opposition_tension",
+        "name": "Opposition Tension",
+        "formula": ["two_elements", "maximum_distance", "equal_weight", "facing"],
+        "creates": ["confrontation", "standoff", "polarity"],
+        "why": "Equal forces don't resolve. Space between becomes charged."
+      },
+      "compression": {
+        "id": "compression_tension",
+        "name": "Compressed Tension",
+        "formula": ["multiple_elements", "corner_position", "tight_proximity", "hard_boundaries"],
+        "creates": ["claustrophobia", "pressure", "trap"],
+        "why": "No escape. Forces push inward."
+      },
+      "suspended": {
+        "id": "suspended_tension",
+        "name": "Suspended Tension",
+        "formula": ["element", "off_center", "diagonal", "frozen_movement"],
+        "creates": ["anticipation", "held_breath", "potential_energy"],
+        "why": "Motion implied but not completed."
+      }
+    },
+    "calm": {
+      "horizontal": {
+        "id": "horizontal_calm",
+        "name": "Horizontal Rest",
+        "formula": ["horizontal_elements", "center_vertical", "low_contrast", "soft_boundaries"],
+        "creates": ["peace", "rest", "stability"],
+        "why": "Horizontal means lying down, at rest."
+      },
+      "symmetric": {
+        "id": "symmetric_calm",
+        "name": "Symmetric Balance",
+        "formula": ["mirrored_elements", "vertical_axis", "equal_weight", "moderate_spacing"],
+        "creates": ["order", "formality", "completion"],
+        "why": "Perfect balance. No unresolved forces."
+      },
+      "sparse": {
+        "id": "sparse_calm",
+        "name": "Sparse Contemplation",
+        "formula": ["minimal_elements", "abundant_void", "soft_contrast", "floating_position"],
+        "creates": ["meditation", "breath", "openness"],
+        "why": "Nothing demands immediate attention."
+      },
+      "grounded": {
+        "id": "grounded_calm",
+        "name": "Grounded Stability",
+        "formula": ["heavy_element", "bottom_position", "anchored", "horizontal_base"],
+        "creates": ["security", "permanence", "foundation"],
+        "why": "Weight at bottom mimics gravity."
+      }
+    },
+    "movement": {
+      "flowing": {
+        "id": "flowing_movement",
+        "name": "Flowing Movement",
+        "formula": ["curved_lines", "continuation", "rhythm", "soft_boundaries"],
+        "creates": ["grace", "organic_motion", "music"],
+        "why": "Curves have no stops. Eye follows continuously."
+      },
+      "directional": {
+        "id": "directional_movement",
+        "name": "Directional Movement",
+        "formula": ["diagonal_elements", "parallel_alignment", "convergence", "speed_variation"],
+        "creates": ["journey", "progress", "narrative"],
+        "why": "Parallel diagonals create unified direction."
+      },
+      "spiral": {
+        "id": "spiral_movement",
+        "name": "Spiral Movement",
+        "formula": ["curved_path", "decreasing_scale", "center_focus", "rotation"],
+        "creates": ["depth", "hypnosis", "cosmic"],
+        "why": "Spiral leads inward inevitably."
+      },
+      "scattered": {
+        "id": "scattered_movement",
+        "name": "Scattered Movement",
+        "formula": ["multiple_points", "random_distribution", "varied_scale", "divergence"],
+        "creates": ["explosion", "chaos", "freedom"],
+        "why": "No unified direction. Maximum entropy."
+      }
+    },
+    "emotion": {
+      "intimacy": {
+        "id": "intimacy",
+        "name": "Intimacy",
+        "formula": ["close_proximity", "soft_boundaries", "warm_temperature", "personal_distance"],
+        "creates": ["connection", "tenderness", "vulnerability"]
+      },
+      "isolation": {
+        "id": "isolation_emotion",
+        "name": "Isolation",
+        "formula": ["single_element", "surrounding_void", "cold_temperature", "public_distance"],
+        "creates": ["loneliness", "independence", "contemplation"]
+      },
+      "mystery": {
+        "id": "mystery",
+        "name": "Mystery",
+        "formula": ["partial_visibility", "dissolved_boundaries", "low_contrast", "deep_space"],
+        "creates": ["curiosity", "uncertainty", "invitation"]
+      },
+      "overwhelm": {
+        "id": "overwhelm",
+        "name": "Overwhelm",
+        "formula": ["multiple_elements", "high_density", "frame_filling", "extreme_contrast"],
+        "creates": ["chaos", "intensity", "sensory_overload"]
+      },
+      "dissolution": {
+        "id": "dissolution",
+        "name": "Dissolution",
+        "formula": ["soft_boundaries", "gradual_transition", "fading_contrast", "void_merging"],
+        "creates": ["transformation", "impermanence", "transcendence"]
+      },
+      "emergence": {
+        "id": "emergence",
+        "name": "Emergence",
+        "formula": ["void_dominant", "single_element", "sharp_boundary", "high_contrast"],
+        "creates": ["birth", "appearance", "significance"]
+      }
+    },
+    "narrative": {
+      "before": {
+        "id": "before",
+        "name": "Before (Anticipation)",
+        "formula": ["potential_movement", "static_position", "direction_implied", "edge_tension"],
+        "creates": ["anticipation", "suspense", "beginning"]
+      },
+      "during": {
+        "id": "during",
+        "name": "During (Action)",
+        "formula": ["frozen_movement", "diagonal_elements", "blur_suggestion", "high_energy"],
+        "creates": ["action", "present_moment", "drama"]
+      },
+      "after": {
+        "id": "after",
+        "name": "After (Aftermath)",
+        "formula": ["resolved_tension", "horizontal_rest", "scattered_elements", "low_energy"],
+        "creates": ["conclusion", "aftermath", "reflection"]
+      },
+      "threshold": {
+        "id": "threshold",
+        "name": "Threshold (Transition)",
+        "formula": ["two_zones", "boundary_between", "element_crossing", "contrast_shift"],
+        "creates": ["transition", "choice", "passage"]
+      }
+    }
+  },
+
+  "archetypes": {
+    "gateway": {
+      "id": "gateway",
+      "name": "The Gateway",
+      "formula": ["two_vertical_elements", "space_between", "depth_beyond", "convergent_lines"],
+      "creates": "Invites entry, promises revelation"
+    },
+    "pyramid": {
+      "id": "pyramid",
+      "name": "The Pyramid",
+      "formula": ["broad_base", "converging_sides", "apex_focus", "stable_foundation"],
+      "creates": "Hierarchy, authority, aspiration"
+    },
+    "cross": {
+      "id": "cross",
+      "name": "The Cross",
+      "formula": ["vertical_element", "horizontal_element", "intersection_focus"],
+      "creates": "Balance, meeting point, stillness"
+    },
+    "radial": {
+      "id": "radial",
+      "name": "The Radial",
+      "formula": ["center_element", "emanating_lines", "equal_distribution"],
+      "creates": "Explosion or implosion, power, centrality"
+    },
+    "grid": {
+      "id": "grid",
+      "name": "The Grid",
+      "formula": ["repeated_elements", "regular_intervals", "uniform_properties"],
+      "creates": "Order, system, multiplicity"
+    },
+    "cascade": {
+      "id": "cascade",
+      "name": "The Cascade",
+      "formula": ["elements", "diagonal_arrangement", "decreasing_scale", "overlapping"],
+      "creates": "Flow, abundance, descent"
+    },
+    "spiral": {
+      "id": "spiral",
+      "name": "The Spiral",
+      "formula": ["curved_path", "changing_scale", "rotation", "depth"],
+      "creates": "Journey, infinity, growth"
+    }
+  }
+}
